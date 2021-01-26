@@ -6,6 +6,17 @@ db.sync({ force: false }).then(() => console.log("Synced with DB"));
 
 exports.ping = async (req, res) => {
  try {
+  if (req.method === "OPTIONS") {
+   res.set("Access-Control-Allow-Origin", "*");
+   res.set("Access-Control-Allow-Methods", "*");
+   res.set("Access-Control-Allow-Headers", "Content-Type");
+   return res.status(204).send("");
+  }
+
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "*");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+
   return res.status(200).json({
    message: "HI"
   });
@@ -18,12 +29,23 @@ exports.ping = async (req, res) => {
 
 exports.action = async (req, res) => {
  try {
+  if (req.method === "OPTIONS") {
+   res.set("Access-Control-Allow-Origin", "*");
+   res.set("Access-Control-Allow-Methods", "*");
+   res.set("Access-Control-Allow-Headers", "Content-Type");
+   return res.status(204).send("");
+  }
+
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "*");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+
   const isLiked = await models.actions.isLikedByClient(
    req.body.client,
    req.body.articleId
   );
 
-  //res.header("Access-Control-Allow-Origin", "*");
+  // res.header("Access-Control-Allow-Origin", "*");
   // res.header("Access-Control-Allow-Methods", "GET, POST");
 
   if (isLiked) {
@@ -49,9 +71,18 @@ exports.action = async (req, res) => {
 
 exports.countLikes = async (req, res) => {
  try {
+  if (req.method === "OPTIONS") {
+   res.set("Access-Control-Allow-Origin", "*");
+   res.set("Access-Control-Allow-Methods", "*");
+   res.set("Access-Control-Allow-Headers", "Content-Type");
+   return res.status(204).send("");
+  }
+
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "*");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+
   const likes = await models.actions.countByArticle(req.body.articleId);
-  // res.header("Access-Control-Allow-Origin", "*");
-  // res.header("Access-Control-Allow-Methods", "GET, POST");
   return res.status(200).json({
    data: likes
   });
@@ -64,6 +95,17 @@ exports.countLikes = async (req, res) => {
 
 exports.isLiked = async (req, res) => {
  try {
+  if (req.method === "OPTIONS") {
+   res.set("Access-Control-Allow-Origin", "*");
+   res.set("Access-Control-Allow-Methods", "*");
+   res.set("Access-Control-Allow-Headers", "Content-Type");
+   return res.status(204).send("");
+  }
+
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "*");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+
   const liked = await models.actions.isLikedByClient(
    req.body.client,
    req.body.articleId
@@ -80,6 +122,17 @@ exports.isLiked = async (req, res) => {
 
 exports.addComment = async (req, res) => {
  try {
+  if (req.method === "OPTIONS") {
+   res.set("Access-Control-Allow-Origin", "*");
+   res.set("Access-Control-Allow-Methods", "*");
+   res.set("Access-Control-Allow-Headers", "Content-Type");
+   return res.status(204).send("");
+  }
+
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "*");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+
   const addedComment = await models.comments.create({
    ...req.body,
    id: uuid()
@@ -96,6 +149,17 @@ exports.addComment = async (req, res) => {
 
 exports.findComments = async (req, res) => {
  try {
+  if (req.method === "OPTIONS") {
+   res.set("Access-Control-Allow-Origin", "*");
+   res.set("Access-Control-Allow-Methods", "*");
+   res.set("Access-Control-Allow-Headers", "Content-Type");
+   return res.status(204).send("");
+  }
+
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "*");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+
   const comments = await models.comments.findByArticle(req.body.articleId);
   return res.status(200).json({
    data: comments
@@ -109,6 +173,17 @@ exports.findComments = async (req, res) => {
 
 exports.deleteComment = async (req, res) => {
  try {
+  if (req.method === "OPTIONS") {
+   res.set("Access-Control-Allow-Origin", "*");
+   res.set("Access-Control-Allow-Methods", "*");
+   res.set("Access-Control-Allow-Headers", "Content-Type");
+   return res.status(204).send("");
+  }
+
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "*");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+
   const deleted = await models.comments.delete(req.body.id);
   return res.status(200).json({
    data: deleted
@@ -122,6 +197,17 @@ exports.deleteComment = async (req, res) => {
 
 exports.read = async (req, res) => {
  try {
+  if (req.method === "OPTIONS") {
+   res.set("Access-Control-Allow-Origin", "*");
+   res.set("Access-Control-Allow-Methods", "*");
+   res.set("Access-Control-Allow-Headers", "Content-Type");
+   return res.status(204).send("");
+  }
+
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "*");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+
   const data = await models.reads.read(req.body.articleId);
   return res.status(200).json({
    data
@@ -135,6 +221,17 @@ exports.read = async (req, res) => {
 
 exports.countReads = async (req, res) => {
  try {
+  if (req.method === "OPTIONS") {
+   res.set("Access-Control-Allow-Origin", "*");
+   res.set("Access-Control-Allow-Methods", "*");
+   res.set("Access-Control-Allow-Headers", "Content-Type");
+   return res.status(204).send("");
+  }
+
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "*");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+
   const data = await models.reads.count(req.body.articleId);
   return res.status(200).json({
    data
