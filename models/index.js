@@ -25,12 +25,14 @@ exports.loadModels = () => {
    like: (id, client, articleId) => {
     return Actions.create({ id, client, articleId });
    },
-   unlike: id => {
-    return Actions.destroy({ where: { id } });
+   unlike: (client, articleId) => {
+    return Actions.destroy({ where: { client, articleId } });
    },
    isLikedByClient: async (clientId, articleId) => {
-    const client = await Actions.findOne({ where: { clientId, articleId } });
-    return !!client;
+    const clientZ = await Actions.findOne({
+     where: { client: clientId, articleId }
+    });
+    return !!clientZ;
    },
    countByArticle: articleId => {
     return Actions.count({ where: { articleId } });

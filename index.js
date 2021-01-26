@@ -49,20 +49,28 @@ exports.action = async (req, res) => {
   // res.header("Access-Control-Allow-Methods", "GET, POST");
 
   if (isLiked) {
-   const count = await models.actions.unlike(req.body.id);
+   const count = await models.actions.unlike(
+    req.body.client,
+    req.body.articleId
+   );
    return res.status(200).json({
     actionType: "unlike",
     data: count
    });
   }
 
-  const like = await models.actions.like(req.body.id, req.body.client);
+  const like = await models.actions.like(
+   req.body.id,
+   req.body.client,
+   req.body.articleId
+  );
 
   return res.status(200).json({
    actionType: "like",
    data: { ...like }
   });
  } catch (error) {
+  // console.log(error.message);
   return res.status(500).json({
    err: error.message
   });
